@@ -1,10 +1,10 @@
 FROM nginx:alpine
 
-# Copy semua file static
+# Copy static files
 COPY index.html /usr/share/nginx/html/
 
-# Copy folder src/assets ke nginx
-COPY src/assets/ /usr/share/nginx/html/assets/
+# ✅ Path yang benar: assets/ (bukan src/assets/)
+COPY assets/ /usr/share/nginx/html/assets/
 
 # Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
