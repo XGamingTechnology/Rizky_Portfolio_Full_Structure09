@@ -1,0 +1,6 @@
+Suggested src structure:
+src/
+ components/
+ pages/
+ assets/
+ data/
