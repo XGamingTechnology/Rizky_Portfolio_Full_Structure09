@@ -1,9 +1,24 @@
+name: portfolio-rizky
+
 services:
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: rizky_portfolio_frontend
+    container_name: portfolio_rizky_frontend
     restart: unless-stopped
     ports:
-      - "127.0.0.1:5173:80"
+      - "127.0.0.1:5174:80" # 🔒 Localhost only, Caddy handle publik
+    networks:
+      - portfolio_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    volumes:
+      - ./frontend/assets:/usr/share/nginx/html/assets:ro # Mount assets untuk mudah update
+
+networks:
+  portfolio_network:
+    driver: bridge
